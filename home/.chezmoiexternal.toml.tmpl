@@ -1,0 +1,17 @@
+
+{{- if and (eq .chezmoi.os "linux") (not .ephemeral) }}
+[".local/bin/age"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = "age/age"
+[".local/bin/age-keygen"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = "age/age-keygen"
+[".local/bin/sops"]
+    type = "file"
+    url = {{ gitHubLatestReleaseAssetURL "getsops/sops" (printf "sops-*.%s.%s" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+{{- end }}
