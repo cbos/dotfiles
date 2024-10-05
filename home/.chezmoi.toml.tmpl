@@ -43,3 +43,8 @@
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
+
+[keepassxc]
+    command = "keepassxc-cli-wrapper.sh"
+    database = "{{ .chezmoi.homeDir }}/SynologyDrive/key-value-pairs/work.kdbx"
+    args = ["--key-file", "{{ .chezmoi.homeDir }}/SynologyDrive/key-value-pairs/work.key"]
