@@ -15,3 +15,55 @@
     url = {{ gitHubLatestReleaseAssetURL "getsops/sops" (printf "sops-*.%s.%s" .chezmoi.os .chezmoi.arch) | quote }}
     executable = true
 {{- end }}
+
+
+[".my-custom-zsh/zsh-syntax-highlighting"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+    exclude = [
+        "*/.editorconfig",
+        "*/.gitattributes",
+        "*/.github",
+        "*/.gitignore",
+    ]
+
+[".my-custom-zsh/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+    exclude = [
+        "*/.editorconfig",
+        "*/.gitattributes",
+        "*/.github",
+        "*/.gitignore",
+    ]
+
+{{- if and (not .ephemeral) (not .headless) }}
+    {{-   $fontDir := "" }}
+    {{-   if eq .chezmoi.os "darwin" }}
+        {{-     $fontDir = "Library/Fonts" }}
+    {{-   else if eq .chezmoi.os "linux" }}
+        {{-     $fontDir = ".local/share/fonts/" }}
+    {{-   end }}
+    {{-   range (list
+    "NerdFontsSymbolsOnly"
+    "JetBrainsMono"
+    "FiraCode"
+    "FiraMono"
+    ) }}
+    ["{{ $fontDir }}/{{ . }}"]
+        type = "archive"
+        exact = true
+        url = {{ gitHubLatestReleaseAssetURL "ryanoasis/nerd-fonts" (printf "%s.tar.xz" . ) | quote }}
+        refreshPeriod = "168h"
+        exclude = [
+            "LICENSE",
+            "README.md"
+        ]
+    {{-   end }}
+{{- end }}
