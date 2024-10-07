@@ -7,7 +7,7 @@
 
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
-{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (env "REMOTE_CONTAINERS") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
 {{-   $ephemeral = true -}}
 {{-   $headless = true -}}
 {{- end -}}
@@ -44,7 +44,9 @@
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
 
+{{ if not $ephemeral }}
 [keepassxc]
     command = "keepassxc-cli-wrapper.sh"
     database = "{{ .chezmoi.homeDir }}/SynologyDrive/key-value-pairs/work.kdbx"
     args = ["--key-file", "{{ .chezmoi.homeDir }}/SynologyDrive/key-value-pairs/work.key"]
+{{ end }}

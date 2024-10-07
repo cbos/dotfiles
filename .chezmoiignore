@@ -2,3 +2,8 @@
 install.sh
 LICENSE
 README.md
+
+
+{{ if .ephemeral }}
+.ssh/
+{{ end }}
