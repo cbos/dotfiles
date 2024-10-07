@@ -1,0 +1,35 @@
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+[color]
+	ui = auto
+[core]
+	editor = vi
+	whitespace = trailing-space,space-before-tab
+[diff]
+	algorithm = histogram
+	renamelimit = 8192
+	renames = copies
+[fetch]
+	fsckobjects = false
+	prune = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = "main"
+[push]
+	default = current
+[rebase]
+	autosquash = true
+	autostash = true
+[receive]
+	fsckobjects = true
+[status]
+	submoduleSummary = true
+[transfer]
+	fsckobjects = true
+[url "git@github.com:cbos/"]
+	insteadOf = https://github.com/cbos/
