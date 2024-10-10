@@ -76,5 +76,20 @@ source "$HOME/.my-custom-zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # load zsh-syntax-highlighting
 source "$HOME/.my-custom-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+# load podman completion
+if [ "$(command -v podman)" ]; then
+    source <(podman completion zsh)
+fi
+
+# load docker completion
+if [ "$(command -v docker)" ]; then
+    source <(docker completion zsh)
+fi
+
+# load hugo completion
+if [ "$(command -v hugo)" ]; then
+    source <(hugo completion zsh)
+fi
+
 # start Starship prompt
 eval "$(starship init zsh)"
