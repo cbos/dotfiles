@@ -6,4 +6,5 @@ README.md
 
 {{ if .ephemeral }}
 .ssh/
+.config/sops/age/
 {{ end }}
