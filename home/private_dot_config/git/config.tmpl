@@ -33,3 +33,11 @@
 	fsckobjects = true
 [url "git@github.com:cbos/"]
 	insteadOf = https://github.com/cbos/
+
+[includeIf "gitdir/i:~/Developer/ING/"]
+  path = ~/Developer/ING/.gitconfig
+[credential]
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

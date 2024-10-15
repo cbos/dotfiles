@@ -1,5 +1,5 @@
 
-{{- if and (eq .chezmoi.os "linux") (not .ephemeral) }}
+{{- if or (and (eq .chezmoi.os "linux") (not .ephemeral)) (eq .chezmoi.os "darwin")}}
 [".local/bin/age"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
