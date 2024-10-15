@@ -1,5 +1,11 @@
 # list files with details
-alias ll="ls -larht"
+
+
+if [ ! "$(command -v eza)" ]; then
+    alias ll="ls -larht"
+else
+    alias ll="eza -al --group-directories-first"
+fi
 
 # include user-specific binaries and scripts
 export PATH="$HOME/.local/bin:$PATH"
@@ -66,6 +72,10 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey "^[[3~" delete-char
 
 # >>> load ZSH plugin
+
+fpath=($fpath $HOME/.my-custom-zsh/eza-autosuggestions/completions/zsh)
+
+# export FPATH="$HOME/.my-custom-zsh/eza-autosuggestions/completions/zsh:$FPATH"
 
 # enable kubectl plugin autocompletion
 autoload -Uz compinit
