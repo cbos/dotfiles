@@ -16,6 +16,9 @@ export PATH="$PATH:/usr/local/bin"
 # add howebrew to path
 export PATH="$PATH:$HOME/.homebrew/bin"
 
+# Add Node 22 to the path
+[ -d "$HOMEBREW_PREFIX/opt/node@22/bin" ] && export PATH="$HOMEBREW_PREFIX/opt/node@22/bin:$PATH"
+
 # specify characters considered as word boundaries for command line navigation
 export WORDCHARS=""
 
@@ -113,7 +116,6 @@ fi
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 # start Starship prompt
 eval "$(starship init zsh)"
