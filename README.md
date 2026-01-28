@@ -22,3 +22,20 @@ find / -name '*.desktop' -exec grep -i -H 'Edge' {} \; 2>/dev/null
 sudo vi /var/lib/flatpak/exports/share/applications/com.microsoft.Edge.desktop
 
 ```
+
+# Bitwarden 
+
+```shell
+bw config server <url e.g. https://vault.bitwarden.eu>
+bw login <email>
+# Set BW_SESSION env var or 
+export BW_SESSION=$(bw login $BITWARDEN_EMAIL --raw)
+
+bw sync
+
+# chezmoi update
+
+bw lock
+#
+bw unlock
+```
