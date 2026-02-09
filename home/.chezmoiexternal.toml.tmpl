@@ -22,12 +22,14 @@
     url = "https://raw.githubusercontent.com/gsinger/cdd/7f474b6d989847c422cd1cbf9a9e57d6cc47597f/cdd_run"
     executable = true
 
+{{- if nq .chezmoi.hostname "AC-2-L-P-025" -}}
 [".local/bin/bw"]
     type = "archive-file"
     url = "https://vault.bitwarden.com/download/?app=cli&platform=linux"
     refreshPeriod = "168h"
     executable = true
     path = "bw"
+{{- end }}
 
 [".my-custom-zsh/zsh-syntax-highlighting"]
     type = "archive"

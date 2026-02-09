@@ -7,6 +7,9 @@
 	editor = vi
 	autocrlf = input
 	whitespace = trailing-space,space-before-tab
+[alias]
+	co-push = "!f() { git checkout -b $1; git push --set-upstream origin $1; }; f"
+	pullall = "!f(){ git pull \"$@\" && git submodule update --init --recursive --remote; }; f"
 [diff]
 	algorithm = histogram
 	renamelimit = 8192
@@ -30,12 +33,17 @@
 	fsckobjects = true
 [status]
 	submoduleSummary = true
+[submodule]
+	recurse = true
 [transfer]
 	fsckobjects = true
+
+{{ if .personal }}
 [url "git@github.com:cbos/"]
 	insteadOf = https://github.com/cbos/
 [url "git@github.com:HervormdPutten/"]
     insteadOf = https://github.com/HervormdPutten/
+{{ end }}
 
 [includeIf "gitdir/i:~/Developer/ING/"]
   path = ~/Developer/ING/.gitconfig

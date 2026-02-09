@@ -20,17 +20,16 @@
 {{- $keepass_database := "not-filled" -}}
 {{- $keepass_keyfile := "not-filled" -}}
 
+{{- $email := "dev@ceesbos.nl" -}}
+{{- $name := "Cees Bos" -}}
 
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "cbos-bluefin" -}}
 {{-     $personal = true -}}
-{{-     $keepass_database = print .chezmoi.homeDir "/SynologyDrive/key-value-pairs/work.kdbx" -}}
-{{-     $keepass_keyfile = print .chezmoi.homeDir "/SynologyDrive/key-value-pairs/work.key" -}}
-{{-   else if eq $hostname "APM3LD7PH04HG76" -}}
+{{-   else if eq $hostname "AC-2-L-P-025" -}}
 {{-     $headless = false -}}
-{{-     $personal = true -}}
-{{-     $keepass_database = print .chezmoi.homeDir "/OneDrive - ING/kvp/prive.kdbx" -}}
-{{-     $keepass_keyfile = print .chezmoi.homeDir "/OneDrive - ING/kvp/prive.key" -}}
+{{-     $personal = false -}}
+{{-     $email = "cees.bos@logius.nl" -}}
 {{-   else if eq $hostname "ubuntu" -}}
 {{-     $headless = true -}}
 {{-     $personal = true -}}
@@ -43,9 +42,6 @@
 {{-   end -}}
 {{- end -}}
 
-{{- $email := "dev@ceesbos.nl" -}}
-{{- $name := "Cees Bos" -}}
-
 [data]
     ephemeral = {{ $ephemeral }}
     email = {{ $email | quote }}
@@ -53,10 +49,3 @@
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
-
-{{ if not $ephemeral }}
-[keepassxc]
-    command = "{{ .chezmoi.homeDir }}/.local/bin/keepassxc-cli-wrapper.sh"
-    database = "{{ $keepass_database }}"
-    args = ["--key-file", "{{ $keepass_keyfile }}"]
-{{ end }}
