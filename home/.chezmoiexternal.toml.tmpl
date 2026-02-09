@@ -22,7 +22,7 @@
     url = "https://raw.githubusercontent.com/gsinger/cdd/7f474b6d989847c422cd1cbf9a9e57d6cc47597f/cdd_run"
     executable = true
 
-{{- if ne .chezmoi.hostname "AC-2-L-P-025" -}}
+{{- if .personal -}}
 [".local/bin/bw"]
     type = "archive-file"
     url = "https://vault.bitwarden.com/download/?app=cli&platform=linux"
@@ -59,11 +59,10 @@
 
 [".my-custom-zsh/eza-autosuggestions"]
     type = "archive"
-    url = "https://github.com/eza-community/eza/archive/main.tar.gz"
+    url = {{ gitHubLatestReleaseAssetURL "eza-community/eza" "completions-*.tar.gz" | quote }}
     exact = true
-    stripComponents = 1
+    stripComponents = 3
     refreshPeriod = "168h"
-    include = ["*/completions/**"]
 
 
 {{- if and (not .ephemeral) (not .headless) }}
