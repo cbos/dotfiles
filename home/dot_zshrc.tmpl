@@ -126,6 +126,13 @@ export NVM_DIR="$HOME/.config/nvm"
 # start Starship prompt
 eval "$(starship init zsh)"
 
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
+if [ "$(command -v atuin)" ]; then
+    source <(atuin gen-completions --shell zsh)
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
