@@ -16,6 +16,12 @@
     executable = true
 {{- end }}
 
+[".local/bin/kubectl"]
+    type = "file"
+    url = {{ printf "https://dl.k8s.io/release/%s/bin/%s/%s/kubectl" (toString (gitHubLatestRelease "kubernetes/kubernetes").TagName) .chezmoi.os .chezmoi.arch | quote }}
+    executable = true
+    refreshPeriod = "168h"
+
 {{/* CDD directory changing - https://linuxhandbook.com/cdd/  -- hardcode on a version */}}
 [".local/bin/cdd"]
     type = "file"
