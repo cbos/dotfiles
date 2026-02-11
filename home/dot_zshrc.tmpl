@@ -115,8 +115,10 @@ fi
 # load kubectl completion
 if [ "$(command -v kubectl)" ]; then
     source <(kubectl completion zsh)
+    alias k="kubectl"
+    alias kctx="kubectl ctx"
+    alias kns="kubectl ns"
 fi
-
 
 # load jenv completion
 if [ "$(command -v jenv)" ]; then
