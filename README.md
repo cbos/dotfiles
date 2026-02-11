@@ -39,3 +39,11 @@ bw lock
 #
 bw unlock
 ```
+
+# Krew
+
+https://github.com/ahmetb/kubectx/
+```shell
+kubectl krew install ctx
+kubectl krew install ns
+```
