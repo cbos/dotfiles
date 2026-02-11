@@ -16,6 +16,9 @@ export PATH="$PATH:/usr/local/bin"
 # add howebrew to path
 export PATH="$PATH:$HOME/.homebrew/bin"
 
+# Add Krew to the path
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
+
 # Add Node 22 to the path
 [ -d "$HOMEBREW_PREFIX/opt/node@22/bin" ] && export PATH="$HOMEBREW_PREFIX/opt/node@22/bin:$PATH"
 
@@ -109,10 +112,11 @@ if [ "$(command -v hugo)" ]; then
     source <(hugo completion zsh)
 fi
 
-# load touchctl completion
-if [ "$(command -v touchctl)" ]; then
-    source <(touchctl completion zsh)
+# load kubectl completion
+if [ "$(command -v kubectl)" ]; then
+    source <(kubectl completion zsh)
 fi
+
 
 # load jenv completion
 if [ "$(command -v jenv)" ]; then
