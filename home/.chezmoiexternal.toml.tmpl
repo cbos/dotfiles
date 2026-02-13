@@ -22,6 +22,12 @@
     executable = true
     refreshPeriod = "168h"
 
+[".local/bin/syft"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "anchore/syft" (printf "syft_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = "syft"
+
 {{/* CDD directory changing - https://linuxhandbook.com/cdd/  -- hardcode on a version */}}
 [".local/bin/cdd"]
     type = "file"
