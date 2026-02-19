@@ -1,0 +1,10 @@
+#.syft.yaml
+# https://oss.anchore.com/docs/reference/syft/configuration/
+
+# exclude paths from being scanned using a glob expression (env: SYFT_EXCLUDE)
+exclude:
+  - "**/test/**"
+  - "**/tests/**"
+  - "**/.git/**"
+  - "**/node_modules/**"
+  - "./target/**"

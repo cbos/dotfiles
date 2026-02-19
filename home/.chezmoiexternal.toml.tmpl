@@ -28,6 +28,12 @@
     executable = true
     path = "syft"
 
+[".local/bin/grype"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "anchore/grype" (printf "grype_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = "grype"
+
 {{/* CDD directory changing - https://linuxhandbook.com/cdd/  -- hardcode on a version */}}
 [".local/bin/cdd"]
     type = "file"
