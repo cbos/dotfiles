@@ -29,6 +29,12 @@
     stripComponents = 1
     path = "helm"
 
+[".local/bin/k9s"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "derailed/k9s" (printf "k9s_Linux_%s.tar.gz" .chezmoi.arch) | quote }}
+    executable = true
+    path = "k9s"
+
 [".local/bin/syft"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "anchore/syft" (printf "syft_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
