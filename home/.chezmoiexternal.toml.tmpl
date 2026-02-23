@@ -22,12 +22,12 @@
     executable = true
     refreshPeriod = "168h"
 
-[".local/bin/helm"]
-    type = "archive-file"
-    url = {{ printf "https://get.helm.sh/helm-%s-%s-%s.tar.gz" (toString (gitHubLatestRelease "helm/helm").TagName) .chezmoi.os .chezmoi.arch | quote }}
-    executable = true
-    stripComponents = 1
-    path = "helm"
+{{/*[".local/bin/helm"]*/}}
+{{/*    type = "archive-file"*/}}
+{{/*    url = {{ printf "https://get.helm.sh/helm-%s-%s-%s.tar.gz" (toString (gitHubLatestRelease "helm/helm").TagName) .chezmoi.os .chezmoi.arch | quote }}*/}}
+{{/*    executable = true*/}}
+{{/*    stripComponents = 1*/}}
+{{/*    path = "helm"*/}}
 
 [".local/bin/k9s"]
     type = "archive-file"
