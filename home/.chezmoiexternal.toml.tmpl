@@ -47,6 +47,17 @@
     executable = true
     path = "grype"
 
+[".local/bin/dive"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "wagoodman/dive" (printf "dive_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    path = "dive"
+
+[".local/bin/diffoci"]
+    type = "file"
+    url = {{ gitHubLatestReleaseAssetURL "reproducible-containers/diffoci" (printf "diffoci-*.%s-%s" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+
 {{/* CDD directory changing - https://linuxhandbook.com/cdd/  -- hardcode on a version */}}
 [".local/bin/cdd"]
     type = "file"
