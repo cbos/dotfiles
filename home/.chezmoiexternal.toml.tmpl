@@ -113,6 +113,18 @@
     stripComponents = 3
     refreshPeriod = "168h"
 
+[".my-custom-zsh/cb-zsh"]
+    type = "archive"
+    url = "https://github.com/cbos/cb-zsh/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    exclude = [
+        "*/LICENSE",
+        "*/README.md",
+        "*/.github",
+        "*/.gitignore",
+    ]
+
 
 {{- if and (not .ephemeral) (not .headless) }}
     {{-   $fontDir := "" }}

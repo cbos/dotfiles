@@ -79,8 +79,8 @@ bindkey "^[[3~" delete-char
 
 # >>> load ZSH plugin
 
-# Add EZA autosuggestions to the path for autosuggestions
-fpath=($fpath $HOME/.my-custom-zsh/eza-autosuggestions/)
+# Add autosuggestions to the path for autosuggestions
+fpath=($fpath $HOME/.my-custom-zsh/eza-autosuggestions/ $HOME/.my-custom-zsh/cb-zsh/autosuggestions/)
 
 [[ -s ~/.localrc ]] && source ~/.localrc
 [[ -s ~/.bash_picard_extras ]] && source ~/.bash_picard_extras
