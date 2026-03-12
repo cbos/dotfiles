@@ -65,6 +65,12 @@
     stripComponents = 1
     path = "k6"
 
+[".local/bin/gitversion"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "GitTools/GitVersion" (printf "gitversion-%s-x64-*.tar.gz" .chezmoi.os) | quote }}
+    executable = true
+    path = "gitversion"
+
 {{/* CDD directory changing - https://linuxhandbook.com/cdd/  -- hardcode on a version */}}
 [".local/bin/cdd"]
     type = "file"
