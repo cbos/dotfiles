@@ -67,7 +67,7 @@
 
 [".local/bin/gitversion"]
     type = "archive-file"
-    url = {{ gitHubLatestReleaseAssetURL "GitTools/GitVersion" (printf "gitversion-%s-x64-*.tar.gz" .chezmoi.os) | quote }}
+    url = {{ gitHubReleaseAssetURL "GitTools/GitVersion" "6.6.0" (printf "gitversion-%s-x64-*.tar.gz" .chezmoi.os) | quote }}
     executable = true
     path = "gitversion"
 
