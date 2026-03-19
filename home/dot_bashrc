@@ -27,6 +27,11 @@ unset rc
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
+
+if [ "$(command -v direnv)" ]; then
+    eval "$(direnv hook bash)"
+fi
+
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 . "$HOME/.atuin/bin/env"
