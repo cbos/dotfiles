@@ -71,11 +71,6 @@
     executable = true
     path = "gitversion"
 
-[".local/bin/acli"]
-    type = "file"
-    url = {{ printf "https://acli.atlassian.com/linux/latest/acli_%s_%s/acli" .chezmoi.os .chezmoi.arch | quote }}
-    executable = true
-
 [".local/bin/direnv"]
     type = "file"
     url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" (printf "direnv.%s-%s" .chezmoi.os .chezmoi.arch) | quote }}
