@@ -35,6 +35,13 @@
     executable = true
     path = "k9s"
 
+[".local/bin/rancher"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "rancher/cli" (printf "rancher-%s-%s-*.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    stripComponents = 2
+    path = "rancher"
+
 [".local/bin/terraform"]
     type = "archive-file"
     url = "https://releases.hashicorp.com/terraform/1.14.8/terraform_1.14.8_linux_amd64.zip"
