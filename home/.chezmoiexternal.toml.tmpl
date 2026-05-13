@@ -89,6 +89,13 @@
     url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" (printf "direnv.%s-%s" .chezmoi.os .chezmoi.arch) | quote }}
     executable = true
 
+[".local/bin/cert-chain-resolver"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "zakjan/cert-chain-resolver" (printf "cert-chain-resolver_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    executable = true
+    stripComponents = 1
+    path = "cert-chain-resolver"
+
 {{/* CDD directory changing - https://linuxhandbook.com/cdd/  -- hardcode on a version */}}
 [".local/bin/cdd"]
     type = "file"
