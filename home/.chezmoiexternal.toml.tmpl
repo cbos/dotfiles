@@ -89,6 +89,13 @@
     stripComponents = 1
     path = "k6"
 
+[".local/bin/gcx"]
+    type = "archive-file"
+    url = {{ gitHubLatestReleaseAssetURL "grafana/gcx" (printf "gcx_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
+    executable = true
+    path = "gcx"
+
 [".local/bin/gitversion"]
     type = "archive-file"
     url = {{ gitHubReleaseAssetURL "GitTools/GitVersion" "6.6.0" (printf "gitversion-%s-x64-*.tar.gz" .chezmoi.os) | quote }}
