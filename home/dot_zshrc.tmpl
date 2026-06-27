@@ -119,6 +119,11 @@ if [ "$(command -v hugo)" ]; then
     source <(hugo completion zsh)
 fi
 
+# load gcx completion
+if [ "$(command -v gcx)" ]; then
+    source <(gcx completion zsh)
+fi
+
 # load kubectl completion
 if [ "$(command -v kubectl)" ]; then
     source <(kubectl completion zsh)
