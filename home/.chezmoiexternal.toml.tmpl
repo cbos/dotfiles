@@ -3,16 +3,19 @@
 [".local/bin/age"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     path = "age/age"
 [".local/bin/age-keygen"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     path = "age/age-keygen"
 [".local/bin/sops"]
     type = "file"
     url = {{ gitHubLatestReleaseAssetURL "getsops/sops" (printf "sops-*.%s.%s" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
 {{- end }}
 
@@ -32,12 +35,14 @@
 [".local/bin/k9s"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "derailed/k9s" (printf "k9s_Linux_%s.tar.gz" .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     path = "k9s"
 
 [".local/bin/rancher"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "rancher/cli" (printf "rancher-%s-%s-*.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     stripComponents = 2
     path = "rancher"
@@ -45,35 +50,41 @@
 [".local/bin/terraform"]
     type = "archive-file"
     url = "https://releases.hashicorp.com/terraform/1.14.8/terraform_1.14.8_linux_amd64.zip"
+    refreshPeriod = "168h"
     executable = true
     path = "terraform"
 
 [".local/bin/syft"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "anchore/syft" (printf "syft_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     path = "syft"
 
 [".local/bin/grype"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "anchore/grype" (printf "grype_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     path = "grype"
 
 [".local/bin/dive"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "wagoodman/dive" (printf "dive_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     path = "dive"
 
 [".local/bin/diffoci"]
     type = "file"
     url = {{ gitHubLatestReleaseAssetURL "reproducible-containers/diffoci" (printf "diffoci-*.%s-%s" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
 
 [".local/bin/k6"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "grafana/k6" (printf "k6-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
     stripComponents = 1
     path = "k6"
@@ -81,18 +92,21 @@
 [".local/bin/gitversion"]
     type = "archive-file"
     url = {{ gitHubReleaseAssetURL "GitTools/GitVersion" "6.6.0" (printf "gitversion-%s-x64-*.tar.gz" .chezmoi.os) | quote }}
+    refreshPeriod = "168h"
     executable = true
     path = "gitversion"
 
 [".local/bin/direnv"]
     type = "file"
     url = {{ gitHubLatestReleaseAssetURL "direnv/direnv" (printf "direnv.%s-%s" .chezmoi.os .chezmoi.arch) | quote }}
+    refreshPeriod = "168h"
     executable = true
 
 [".local/bin/cert-chain-resolver"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "zakjan/cert-chain-resolver" (printf "cert-chain-resolver_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
     executable = true
+    refreshPeriod = "168h"
     stripComponents = 1
     path = "cert-chain-resolver"
 
@@ -147,6 +161,7 @@
 [".my-custom-zsh/cb-zsh"]
     type = "archive"
     url = "https://github.com/cbos/cb-zsh/archive/master.tar.gz"
+    refreshPeriod = "15m"
     exact = true
     stripComponents = 1
     exclude = [
@@ -155,7 +170,6 @@
         "*/.github",
         "*/.gitignore",
     ]
-    refreshPeriod = "24h"
 
 
 {{- if and (not .ephemeral) (not .headless) }}
