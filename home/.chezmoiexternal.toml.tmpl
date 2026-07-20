@@ -41,7 +41,7 @@
 
 [".local/bin/amtool"]
     type = "archive-file"
-    url = {{ gitHubLatestReleaseAssetURL "prometheus/alertmanager" (printf "alertmanager*-%s-386.tar.gz" .chezmoi.os) | quote }}
+    url = {{ gitHubLatestReleaseAssetURL "prometheus/alertmanager" (printf "alertmanager-*.%s-386.tar.gz" .chezmoi.os) | quote }}
     refreshPeriod = "168h"
     executable = true
     path = "amtool"
