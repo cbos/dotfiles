@@ -44,6 +44,7 @@
     url = {{ gitHubLatestReleaseAssetURL "prometheus/alertmanager" (printf "alertmanager-*.%s-386.tar.gz" .chezmoi.os) | quote }}
     refreshPeriod = "168h"
     executable = true
+    stripComponents = 1
     path = "amtool"
 
 [".local/bin/rancher"]
