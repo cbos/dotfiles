@@ -156,6 +156,9 @@ if [ "$(command -v atuin)" ]; then
     source <(atuin gen-completions --shell zsh)
 fi
 
+# Export the NPM token for the GitLab Package Registry
+export GITLAB_NPM_TOKEN="$(secret-tool lookup package-registry gitlab)"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
