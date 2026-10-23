@@ -10,6 +10,7 @@
 [alias]
 	co-push = "!f() { git checkout -b $1; git push --set-upstream origin $1; }; f"
 	pullall = "!f(){ git pull \"$@\" && git submodule update --init --recursive --remote; }; f"
+    gone = "!git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D"
 [diff]
 	algorithm = histogram
 	renamelimit = 8192
