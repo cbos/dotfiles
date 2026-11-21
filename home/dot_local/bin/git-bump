@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# git-bump — increment the latest semver tag and tag HEAD.
+#
+# Usage: git bump [major|minor|patch] [-n|--dry-run] [-p|--push] [-m MSG]
+#   default part is "patch"; first tag ever becomes v0.1.0
+#
+# Install: put this file on your PATH as "git-bump" and chmod +x it,
+#          then call it as "git bump minor".
+set -euo pipefail
+
+part=patch dry=0 push=0 msg=""
+prefix="${GIT_BUMP_PREFIX:-v}"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    major|minor|patch) part="$1" ;;
+    -n|--dry-run)      dry=1 ;;
+    -p|--push)         push=1 ;;
+    -m)                msg="$2"; shift ;;
+    -h|--help)         sed -n '2,8p' "$0"; exit 0 ;;
+    *) echo "unknown argument: $1" >&2; exit 2 ;;
+  esac
+  shift
+done
+
+git rev-parse --git-dir >/dev/null 2>&1 || { echo "not a git repository" >&2; exit 1; }
+
+# Latest reachable semver tag, e.g. v1.4.2
+current=$(git describe --tags --abbrev=0 --match "${prefix}[0-9]*.[0-9]*.[0-9]*" 2>/dev/null || true)
+
+if [[ -z "$current" ]]; then
+  next="${prefix}0.1.0"
+else
+  if ! [[ "${current#"$prefix"}" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
+    echo "cannot parse tag: $current" >&2; exit 1
+  fi
+  major=${BASH_REMATCH[1]} minor=${BASH_REMATCH[2]} patch=${BASH_REMATCH[3]}
+  case "$part" in
+    major) major=$((major + 1)); minor=0; patch=0 ;;
+    minor) minor=$((minor + 1)); patch=0 ;;
+    patch) patch=$((patch + 1)) ;;
+  esac
+  next="${prefix}${major}.${minor}.${patch}"
+
+  if [[ "$(git rev-list -n1 "$current")" == "$(git rev-parse HEAD)" ]]; then
+    echo "HEAD is already tagged $current" >&2; exit 1
+  fi
+fi
+
+echo "${current:-<none>} -> $next"
+[[ $dry -eq 1 ]] && exit 0
+
+git tag -a "$next" -m "${msg:-Release $next}"
+echo "tagged $(git rev-parse --short HEAD) as $next"
+
+if [[ $push -eq 1 ]]; then
+  git push origin "$next"
+fi
